@@ -20,39 +20,39 @@ if ( platform.isRendererProcess ) {
 
 ## Properties
 
-### platform.isNode
+### isNode
 
 Indicates whether executes in node.js application
 
-### platform.isElectron
+### isElectron
 
 Indicates whether executes in electron
 
-### platform.isNative
+### isNative
 
 Indicates whether executes in native environment (compare to web-browser)
 
-### platform.isPureWeb
+### isPureWeb
 
 Indicates whether executes in common web browser
 
-### platform.isRendererProcess
+### isRendererProcess
 
 Indicates whether executes in common web browser, or editor's renderer process(web-page)
 
-### platform.isMainProcess
+### isMainProcess
 
 Indicates whether executes in editor's main process
 
-### platform.isDarwin
+### isDarwin
 
 Indicates whether executes in OSX
 
-### platform.isWin32
+### isWin32
 
 Indicates whether executes in Windows
 
-### platform.isRetina
+### isRetina
 
 Check if running in retina display
 
