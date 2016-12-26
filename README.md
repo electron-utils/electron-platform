@@ -4,13 +4,13 @@ Platform detection for Electron and Web Browser.
 
 ## Install
 
-```
+```bash
 npm install --save electron-platform
 ```
 
 ## Usage
 
-```
+```javascript
 const platform = require('electron-platform');
 
 if ( platform.isRendererProcess ) {
