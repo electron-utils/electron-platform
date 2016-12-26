@@ -32,7 +32,7 @@ exports.isNative = exports.isElectron;
  *
  * Indicates whether executes in common web browser
  */
-exports.isPureWeb = !exports.isNode && !exports.isNative; // common web browser
+exports.isPureWeb = !exports.isNode && !exports.isNative;
 
 /**
  * @property isRendererProcess
