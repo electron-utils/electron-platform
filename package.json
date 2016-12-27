@@ -1,8 +1,11 @@
 {
   "name": "electron-platform",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Platform detection for Electron and Web Browser",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*.spec.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electron-utils/electron-platform.git"
@@ -16,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/electron-utils/electron-platform/issues"
   },
-  "homepage": "https://github.com/electron-utils/electron-platform"
+  "homepage": "https://github.com/electron-utils/electron-platform",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "electron": "1.4.13",
+    "mocha": "^3.2.0",
+    "spectron": "3.4.1"
+  }
 }

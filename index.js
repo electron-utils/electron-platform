@@ -1,98 +1,101 @@
 'use strict';
 
-let exports = {};
-
-/**
- * @property isNode
- * @type boolean
- *
- * Indicates whether executes in node.js application
- */
-exports.isNode = !!(typeof process !== 'undefined' && process.versions && process.versions.node);
-
-/**
- * @property isElectron
- * @type boolean
- *
- * Indicates whether executes in electron
- */
-exports.isElectron = !!(exports.isNode && ('electron' in process.versions));
-
-/**
- * @property isNative
- * @type boolean
- *
- * Indicates whether executes in native environment (compare to web-browser)
- */
-exports.isNative = exports.isElectron;
-
-/**
- * @property isPureWeb
- * @type boolean
- *
- * Indicates whether executes in common web browser
- */
-exports.isPureWeb = !exports.isNode && !exports.isNative;
-
-/**
- * @property isRendererProcess
- * @type boolean
- *
- * Indicates whether executes in common web browser, or editor's renderer process(web-page)
- */
-if (exports.isElectron) {
-  exports.isRendererProcess = typeof process !== 'undefined' && process.type === 'renderer';
-} else {
-  exports.isRendererProcess = (typeof __dirname === 'undefined' || __dirname === null);
-}
-
-/**
- * @property isMainProcess
- * @type boolean
- *
- * Indicates whether executes in editor's main process
- */
-exports.isMainProcess = typeof process !== 'undefined' && process.type === 'browser';
-
-if (exports.isNode) {
-  /**
-   * @property isDarwin
-   * @type boolean
-   *
-   * Indicates whether executes in OSX
-   */
-  exports.isDarwin = process.exports === 'darwin';
-
-  /**
-   * @property isWin32
-   * @type boolean
-   *
-   * Indicates whether executes in Windows
-   */
-  exports.isWin32 = process.exports === 'win32';
-} else {
-  // http://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-exports-as-of-today
-  let exports = window.navigator.exports;
-  exports.isDarwin = exports.substring(0, 3) === 'Mac';
-  exports.isWin32 = exports.substring(0, 3) === 'Win';
-}
-
-
-/**
- * @property isRetina
- * @type boolean
- *
- * Check if running in retina display
- */
-Object.defineProperty(exports, 'isRetina', {
-  enumerable: true,
-  get () {
-    return exports.isRendererProcess && window.devicePixelRatio && window.devicePixelRatio > 1;
+(function (window, factory) {
+  if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    window.platform = factory();
   }
+})(this, function () {
+
+  let platform = {};
+
+  /**
+   * @property isNode
+   * @type boolean
+   *
+   * Indicates whether executes in node.js application
+   */
+  platform.isNode = !!(typeof process !== 'undefined' && process.versions && process.versions.node);
+
+  if (platform.isNode) {
+    /**
+     * @property isDarwin
+     * @type boolean
+     *
+     * Indicates whether executes in OSX
+     */
+    platform.isDarwin = process.platform === 'darwin';
+
+    /**
+     * @property isWin32
+     * @type boolean
+     *
+     * Indicates whether executes in Windows
+     */
+    platform.isWin32 = process.platform === 'win32';
+
+    /**
+     * @property isElectron
+     * @type boolean
+     *
+     * Indicates whether executes in electron
+     */
+    platform.isElectron = !!('electron' in process.versions);
+
+  } else {
+    // http://stackoverflow.com/questions/19877924/what-is-the-list-of-possible-values-for-navigator-platform-as-of-today
+    let platform_ = window.navigator.platform;
+    platform.isDarwin = platform_.substring(0, 3) === 'Mac';
+    platform.isWin32 = platform_.substring(0, 3) === 'Win';
+
+    platform.isElectron = window.navigator.userAgent.indexOf('Electron') !== -1;
+  }
+
+  /**
+   * @property isNative
+   * @type boolean
+   *
+   * Indicates whether executes in native environment (compare to web-browser)
+   */
+  platform.isNative = platform.isElectron;
+
+  /**
+   * @property isPureWeb
+   * @type boolean
+   *
+   * Indicates whether executes in common web browser
+   */
+  platform.isPureWeb = !platform.isNode && !platform.isNative;
+
+  /**
+   * @property isRendererProcess
+   * @type boolean
+   *
+   * Indicates whether executes in common web browser, or editor's renderer process(web-page)
+   */
+  platform.isRendererProcess = typeof process === 'undefined' || process.type === 'renderer';
+
+  /**
+   * @property isMainProcess
+   * @type boolean
+   *
+   * Indicates whether executes in editor's main process
+   */
+  platform.isMainProcess = typeof process !== 'undefined' && process.type === 'browser';
+
+  /**
+   * @property isRetina
+   * @type boolean
+   *
+   * Check if running in retina display
+   */
+  Object.defineProperty(platform, 'isRetina', {
+    enumerable: true,
+    get () {
+      return platform.isRendererProcess && window.devicePixelRatio && window.devicePixelRatio > 1;
+    }
+  });
+
+  return platform;
 });
-
-// ==========================
-// exports
-// ==========================
-
-module.exports = exports;

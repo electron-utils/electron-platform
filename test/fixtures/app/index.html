@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Electron App</title>
+  </head>
+
+  <body>
+    <div>Testing...</div>
+    <script>
+      const platform = require('../../../index.js');
+
+      console.log(`isNode: ${platform.isNode}`);
+      console.log(`isElectron: ${platform.isElectron}`);
+      console.log(`isNative: ${platform.isNative}`);
+      console.log(`isPureWeb: ${platform.isPureWeb}`);
+      console.log(`isRendererProcess: ${platform.isRendererProcess}`);
+      console.log(`isMainProcess: ${platform.isMainProcess}`);
+      console.log(`isDarwin: ${platform.isDarwin}`);
+      console.log(`isWin32: ${platform.isWin32}`);
+    </script>
+  </body>
+</html>
