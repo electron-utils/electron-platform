@@ -1,11 +1,11 @@
 # electron-platform
 
-Platform detection for Electron and Web Browser.
-
 [![Linux Build Status](https://travis-ci.org/electron-utils/electron-platform.svg?branch=master)](https://travis-ci.org/electron-utils/electron-platform)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/ym6vcqcpqmv3dd34?svg=true)](https://ci.appveyor.com/project/electron-utils/electron-platform)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/ym6vcqcpqmv3dd34?svg=true)](https://ci.appveyor.com/project/jwu/electron-platform)
 [![Dependency Status](https://david-dm.org/electron-utils/electron-platform.svg)](https://david-dm.org/electron-utils/electron-platform)
 [![devDependency Status](https://david-dm.org/electron-utils/electron-platform/dev-status.svg)](https://david-dm.org/electron-utils/electron-platform#info=devDependencies)
+
+Platform detection for Electron and Web Browser.
 
 ## Install
 
@@ -65,4 +65,4 @@ Check if running in retina display
 
 ## License
 
-MIT © 2016 Johnny Wu
+MIT © 2017 Johnny Wu
