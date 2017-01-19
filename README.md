@@ -29,39 +29,44 @@ if ( platform.isRendererProcess ) {
 
 #### isNode
 
-Indicates whether executes in node.js application
+Indicates whether executes in node.js application.
 
 #### isElectron
 
-Indicates whether executes in electron
+Indicates whether executes in electron.
 
 #### isNative
 
-Indicates whether executes in native environment (compare to web-browser)
+Indicates whether executes in native environment (compare to web-browser).
 
 #### isPureWeb
 
-Indicates whether executes in common web browser
+Indicates whether executes in common web browser.
 
 #### isRendererProcess
 
-Indicates whether executes in common web browser, or editor's renderer process(web-page)
+Indicates whether executes in common web browser, or editor's renderer process(web-page).
 
 #### isMainProcess
 
-Indicates whether executes in editor's main process
+Indicates whether executes in editor's main process.
 
 #### isDarwin
 
-Indicates whether executes in OSX
+Indicates whether executes in OSX.
 
 #### isWin32
 
-Indicates whether executes in Windows
+Indicates whether executes in Windows.
+
+#### isDev
+
+Check if running in retina display.
+If we are in renderer process and `nodeIntegration` is false, isDev will be undefined.
 
 #### isRetina
 
-Check if running in retina display
+Check if running in retina display.
 
 ## License
 

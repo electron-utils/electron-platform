@@ -14,7 +14,7 @@
    * @property isNode
    * @type boolean
    *
-   * Indicates whether executes in node.js application
+   * Indicates whether executes in node.js application.
    */
   platform.isNode = !!(typeof process !== 'undefined' && process.versions && process.versions.node);
 
@@ -23,7 +23,7 @@
      * @property isDarwin
      * @type boolean
      *
-     * Indicates whether executes in OSX
+     * Indicates whether executes in OSX.
      */
     platform.isDarwin = process.platform === 'darwin';
 
@@ -31,7 +31,7 @@
      * @property isWin32
      * @type boolean
      *
-     * Indicates whether executes in Windows
+     * Indicates whether executes in Windows.
      */
     platform.isWin32 = process.platform === 'win32';
 
@@ -39,7 +39,7 @@
      * @property isElectron
      * @type boolean
      *
-     * Indicates whether executes in electron
+     * Indicates whether executes in electron.
      */
     platform.isElectron = !!('electron' in process.versions);
 
@@ -56,7 +56,7 @@
    * @property isNative
    * @type boolean
    *
-   * Indicates whether executes in native environment (compare to web-browser)
+   * Indicates whether executes in native environment (compare to web-browser).
    */
   platform.isNative = platform.isElectron;
 
@@ -64,7 +64,7 @@
    * @property isPureWeb
    * @type boolean
    *
-   * Indicates whether executes in common web browser
+   * Indicates whether executes in common web browser.
    */
   platform.isPureWeb = !platform.isNode && !platform.isNative;
 
@@ -72,7 +72,7 @@
    * @property isRendererProcess
    * @type boolean
    *
-   * Indicates whether executes in common web browser, or editor's renderer process(web-page)
+   * Indicates whether executes in common web browser, or editor's renderer process(web-page).
    */
   platform.isRendererProcess = typeof process === 'undefined' || process.type === 'renderer';
 
@@ -80,15 +80,27 @@
    * @property isMainProcess
    * @type boolean
    *
-   * Indicates whether executes in editor's main process
+   * Indicates whether executes in editor's main process.
    */
   platform.isMainProcess = typeof process !== 'undefined' && process.type === 'browser';
+
+  /**
+   * @property isDev
+   * @type boolean
+   *
+   * Check if Electron is running in development.
+   * If we are in renderer process and `nodeIntegration` is false, isDev will be undefined.
+   */
+  // NOTE: Reference from https://github.com/sindresorhus/electron-is-dev
+  if ( typeof process !== 'undefined' ) {
+    platform.isDev = process.defaultApp || /[\\/]electron-prebuilt[\\/]/.test(process.execPath) || /[\\/]electron[\\/]/.test(process.execPath);
+  }
 
   /**
    * @property isRetina
    * @type boolean
    *
-   * Check if running in retina display
+   * Check if running in retina display.
    */
   Object.defineProperty(platform, 'isRetina', {
     enumerable: true,

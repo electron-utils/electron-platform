@@ -60,6 +60,7 @@ describe('electron', function () {
         assert.equal(platform.isMainProcess, true);
         assert.equal(platform.isDarwin, process.platform === 'darwin');
         assert.equal(platform.isWin32, process.platform === 'win32');
+        assert.equal(platform.isDev, true);
       });
   });
 
@@ -68,7 +69,7 @@ describe('electron', function () {
       .waitUntilWindowLoaded()
       .getRenderProcessLogs()
       .then(function (logs) {
-        assert.equal(logs.length, 8);
+        assert.equal(logs.length, 9);
         assert.ok(logs[0].message.indexOf('isNode: true') !== -1);
         assert.ok(logs[1].message.indexOf('isElectron: true') !== -1);
         assert.ok(logs[2].message.indexOf('isNative: true') !== -1);
@@ -77,6 +78,7 @@ describe('electron', function () {
         assert.ok(logs[5].message.indexOf('isMainProcess: false') !== -1);
         assert.ok(logs[6].message.indexOf('isDarwin: ' + (process.platform === 'darwin').toString()) !== -1);
         assert.ok(logs[7].message.indexOf('isWin32: ' + (process.platform === 'win32').toString()) !== -1);
+        assert.ok(logs[8].message.indexOf('isDev: true') !== -1);
       });
   });
 });
@@ -105,7 +107,7 @@ describe('electron without node-integration', function () {
       .waitUntilWindowLoaded()
       .getRenderProcessLogs()
       .then(function (logs) {
-        assert.equal(logs.length, 8);
+        assert.equal(logs.length, 9);
         assert.ok(logs[0].message.indexOf('isNode: false') !== -1);
         assert.ok(logs[1].message.indexOf('isElectron: true') !== -1);
         assert.ok(logs[2].message.indexOf('isNative: true') !== -1);
@@ -114,6 +116,7 @@ describe('electron without node-integration', function () {
         assert.ok(logs[5].message.indexOf('isMainProcess: false') !== -1);
         assert.ok(logs[6].message.indexOf('isDarwin: ' + (process.platform === 'darwin').toString()) !== -1);
         assert.ok(logs[7].message.indexOf('isWin32: ' + (process.platform === 'win32').toString()) !== -1);
+        assert.ok(logs[8].message.indexOf('isDev: undefined') !== -1);
       });
   });
 });
